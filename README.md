@@ -1,0 +1,1 @@
+It uses AI (Ankur Intelligence)
