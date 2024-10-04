@@ -24,7 +24,7 @@ type Server struct {
 
 func (s *Server) addConn(conn net.Conn) {
 	s.connections = append(s.connections, conn)
-	log.Println("New client registered", conn.RemoteAddr().String())
+	log.Println("New client connected", conn.RemoteAddr().String())
 }
 
 func (s *Server) register(username string, conn *net.Conn) *Response {
@@ -68,6 +68,7 @@ func sendMessage(res *Response, conn net.Conn) error {
 }
 
 func (s *Server) handleRequest(req *Request, conn *net.Conn) {
+	log.Println("Received Request:", req.Command)
 	switch req.Command {
 	case "sendAll":
 		res := &Response{Message: req.Args["message"]}
